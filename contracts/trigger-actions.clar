@@ -8,6 +8,7 @@
 
 (define-public (execute-trigger (user principal))
   (begin
+    (asserts! (is-some (contract-call? .heartbeat-core get-status user)) (err u404))
     ;; 1. Attempt to trigger the switch (will fail if already triggered or not time)
     (try! (contract-call? .heartbeat-core try-trigger user))
     

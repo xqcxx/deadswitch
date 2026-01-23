@@ -25,6 +25,7 @@
 (define-public (register-switch (interval uint) (grace-period uint))
   (begin
     (asserts! (and (>= interval MIN_INTERVAL) (<= interval MAX_INTERVAL)) ERR_INVALID_INTERVAL)
+    (asserts! (> grace-period u0) ERR_INVALID_INTERVAL)
     (asserts! (is-none (map-get? switches tx-sender)) ERR_ALREADY_EXISTS)
     (map-set switches tx-sender {
       interval: interval,
@@ -44,6 +45,7 @@
 (define-public (guardian-pulse (user principal))
   (begin
     (asserts! (is-eq contract-caller .guardian-network) ERR_NOT_AUTHORIZED)
+    (asserts! (is-some (map-get? switches user)) ERR_NOT_FOUND)
     (pulse user)
   )
 )
