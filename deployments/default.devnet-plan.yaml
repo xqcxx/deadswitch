@@ -1,0 +1,60 @@
+---
+id: 0
+name: Devnet deployment
+network: devnet
+stacks-node: "http://localhost:20443"
+bitcoin-node: "http://devnet:devnet@localhost:18443"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-publish:
+            contract-name: beneficiary-mgr
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            cost: 9230
+            path: contracts/beneficiary-mgr.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: heartbeat-core
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            cost: 34710
+            path: contracts/heartbeat-core.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: guardian-network
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            cost: 9840
+            path: contracts/guardian-network.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: nft-trait
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            cost: 4660
+            path: contracts/nft-trait.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: switch-nft
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            cost: 12190
+            path: contracts/switch-nft.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: vault
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            cost: 23600
+            path: contracts/vault.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: trigger-actions
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
+            cost: 12630
+            path: contracts/trigger-actions.clar
+            anchor-block-only: true
+            clarity-version: 2
+      epoch: "2.5"

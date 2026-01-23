@@ -1,0 +1,60 @@
+---
+id: 0
+name: Mainnet deployment
+network: mainnet
+stacks-node: "https://api.hiro.so"
+bitcoin-node: "http://blockstack:blockstacksystem@bitcoin.blockstack.com:8332"
+plan:
+  batches:
+    - id: 0
+      transactions:
+        - contract-publish:
+            contract-name: beneficiary-mgr
+            expected-sender: SPZ5Q1C2GVSMCWS9NWVDEKHNW04THC75SCQM99B3
+            cost: 19933715
+            path: contracts/beneficiary-mgr.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: heartbeat-core
+            expected-sender: SPZ5Q1C2GVSMCWS9NWVDEKHNW04THC75SCQM99B3
+            cost: 19943497
+            path: contracts/heartbeat-core.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: guardian-network
+            expected-sender: SPZ5Q1C2GVSMCWS9NWVDEKHNW04THC75SCQM99B3
+            cost: 19933715
+            path: contracts/guardian-network.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: nft-trait
+            expected-sender: SPZ5Q1C2GVSMCWS9NWVDEKHNW04THC75SCQM99B3
+            cost: 10332792
+            path: contracts/nft-trait.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: switch-nft
+            expected-sender: SPZ5Q1C2GVSMCWS9NWVDEKHNW04THC75SCQM99B3
+            cost: 10334060
+            path: contracts/switch-nft.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: vault
+            expected-sender: SPZ5Q1C2GVSMCWS9NWVDEKHNW04THC75SCQM99B3
+            cost: 10336595
+            path: contracts/vault.clar
+            anchor-block-only: true
+            clarity-version: 2
+        - contract-publish:
+            contract-name: trigger-actions
+            expected-sender: SPZ5Q1C2GVSMCWS9NWVDEKHNW04THC75SCQM99B3
+            cost: 10334482
+            path: contracts/trigger-actions.clar
+            anchor-block-only: true
+            clarity-version: 2
+      epoch: "2.5"
