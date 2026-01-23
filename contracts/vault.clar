@@ -4,6 +4,7 @@
 ;; ============================================
 
 (define-constant ERR_NOT_AUTHORIZED (err u401))
+(define-constant ERR_INVALID_PARAM (err u400))
 (define-constant ERR_TRIGGERED (err u410))
 (define-constant ERR_NOT_TRIGGERED (err u411))
 (define-constant ERR_INSUFFICIENT_FUNDS (err u402))
@@ -17,6 +18,7 @@
 
 (define-public (deposit-stx (amount uint))
   (begin
+    (asserts! (> amount u0) ERR_INVALID_PARAM)
     (try! (stx-transfer? amount tx-sender .vault))
     (map-set deposits tx-sender (+ (default-to u0 (map-get? deposits tx-sender)) amount))
     (ok true)
@@ -25,6 +27,8 @@
 
 (define-public (set-message (hash (buff 32)) (uri (string-ascii 200)))
   (begin
+    (asserts! (> (len uri) u0) ERR_INVALID_PARAM)
+    (asserts! (> (len hash) u0) ERR_INVALID_PARAM)
     (map-set secrets tx-sender { message-hash: hash, message-uri: uri })
     (ok true)
   )
@@ -56,6 +60,7 @@
     (asserts! (is-eq contract-caller .trigger-actions) ERR_NOT_AUTHORIZED)
     (asserts! triggered ERR_NOT_TRIGGERED)
     (asserts! (<= amount balance) ERR_INSUFFICIENT_FUNDS)
+    (asserts! (not (is-eq owner recipient)) ERR_INVALID_PARAM)
     
     (try! (as-contract (stx-transfer? amount tx-sender recipient)))
     (map-set deposits owner (- balance amount))

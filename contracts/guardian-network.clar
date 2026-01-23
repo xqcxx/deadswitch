@@ -9,6 +9,7 @@
 
 (define-public (add-guardian (guardian principal))
   (begin
+    (asserts! (not (is-eq guardian tx-sender)) (err u400))
     (map-set guardians { user: tx-sender, guardian: guardian } true)
     (ok true)
   )
@@ -16,6 +17,7 @@
 
 (define-public (remove-guardian (guardian principal))
   (begin
+    (asserts! (not (is-eq guardian tx-sender)) (err u400))
     (map-delete guardians { user: tx-sender, guardian: guardian })
     (ok true)
   )

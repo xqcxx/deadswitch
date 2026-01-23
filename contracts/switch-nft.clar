@@ -30,6 +30,8 @@
 (define-public (transfer (token-id uint) (sender principal) (recipient principal))
   (begin
     (asserts! (is-eq tx-sender sender) ERR_NOT_AUTHORIZED)
+    (asserts! (not (is-eq sender recipient)) ERR_NOT_AUTHORIZED)
+    (asserts! (is-eq (some sender) (nft-get-owner? switch-nft token-id)) ERR_NOT_AUTHORIZED)
     (nft-transfer? switch-nft token-id sender recipient)
   )
 )
