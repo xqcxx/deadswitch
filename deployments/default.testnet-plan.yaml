@@ -1,8 +1,8 @@
 ---
 id: 0
-name: Mainnet deployment
-network: mainnet
-stacks-node: "https://api.hiro.so"
+name: Testnet deployment
+network: testnet
+stacks-node: "https://api.testnet.hiro.so"
 bitcoin-node: "http://blockstack:blockstacksystem@bitcoin.blockstack.com:8332"
 plan:
   batches:
@@ -10,49 +10,49 @@ plan:
       transactions:
         - contract-publish:
             contract-name: beneficiary-mgr
-            expected-sender: SP3RA8PSC763B8M7KTS3CABBDPQBR9V2P88KS9YNZ
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 9230
             path: contracts/beneficiary-mgr.clar
             anchor-block-only: true
             clarity-version: 4
         - contract-publish:
             contract-name: heartbeat-core
-            expected-sender: SP3RA8PSC763B8M7KTS3CABBDPQBR9V2P88KS9YNZ
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 35910
             path: contracts/heartbeat-core.clar
             anchor-block-only: true
             clarity-version: 4
         - contract-publish:
             contract-name: guardian-network
-            expected-sender: SP3RA8PSC763B8M7KTS3CABBDPQBR9V2P88KS9YNZ
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 11020
             path: contracts/guardian-network.clar
             anchor-block-only: true
             clarity-version: 4
         - contract-publish:
             contract-name: nft-trait
-            expected-sender: SP3RA8PSC763B8M7KTS3CABBDPQBR9V2P88KS9YNZ
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 4660
             path: contracts/nft-trait.clar
             anchor-block-only: true
             clarity-version: 4
         - contract-publish:
             contract-name: switch-nft
-            expected-sender: SP3RA8PSC763B8M7KTS3CABBDPQBR9V2P88KS9YNZ
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 13770
             path: contracts/switch-nft.clar
             anchor-block-only: true
             clarity-version: 4
         - contract-publish:
             contract-name: vault
-            expected-sender: SP3RA8PSC763B8M7KTS3CABBDPQBR9V2P88KS9YNZ
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 26180
             path: contracts/vault.clar
             anchor-block-only: true
             clarity-version: 4
         - contract-publish:
             contract-name: trigger-actions
-            expected-sender: SP3RA8PSC763B8M7KTS3CABBDPQBR9V2P88KS9YNZ
+            expected-sender: ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM
             cost: 13480
             path: contracts/trigger-actions.clar
             anchor-block-only: true
