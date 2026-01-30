@@ -34,6 +34,7 @@
       active: true,
       triggered: false
     })
+    (print { event: "register", user: tx-sender, interval: interval, grace-period: grace-period })
     (ok true)
   )
 )
@@ -46,6 +47,7 @@
   (begin
     (asserts! (is-eq contract-caller .guardian-network) ERR_NOT_AUTHORIZED)
     (asserts! (is-some (map-get? switches user)) ERR_NOT_FOUND)
+    (print { event: "guardian-pulse", user: user, guardian: tx-sender })
     (pulse user)
   )
 )
@@ -60,6 +62,7 @@
     
     ;; Update last-check-in
     (map-set switches user (merge switch { last-check-in: burn-block-height }))
+    (print { event: "heartbeat", user: user, block-height: burn-block-height })
     (ok true)
   )
 )
@@ -74,6 +77,7 @@
     (asserts! (not (get triggered switch)) ERR_SWITCH_TRIGGERED)
     
     (map-set switches user (merge switch { interval: new-interval }))
+    (print { event: "update-interval", user: user, new-interval: new-interval })
     (ok true)
   )
 )
@@ -85,6 +89,7 @@
       (switch (unwrap! (map-get? switches user) ERR_NOT_FOUND))
     )
     (map-set switches user (merge switch { active: false }))
+    (print { event: "deactivate", user: user })
     (ok true)
   )
 )
@@ -102,6 +107,7 @@
     
     ;; Set triggered to true
     (map-set switches target (merge switch { triggered: true }))
+    (print { event: "triggered", user: target, block-height: burn-block-height })
     (ok true)
   )
 )
