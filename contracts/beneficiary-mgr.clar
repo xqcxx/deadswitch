@@ -4,6 +4,7 @@
 ;; ============================================
 
 (define-constant ERR_INVALID_PERCENTAGE (err u413))
+(define-constant ERR_EMPTY_LIST (err u414))
 
 (define-map beneficiaries principal (list 10 {
   recipient: principal,
@@ -20,7 +21,8 @@
     (
       (total-percent (fold sum-percentages new-list u0))
     )
-    (asserts! (<= total-percent u100) ERR_INVALID_PERCENTAGE)
+    (asserts! (> (len new-list) u0) ERR_EMPTY_LIST)
+    (asserts! (is-eq total-percent u100) ERR_INVALID_PERCENTAGE)
     (map-set beneficiaries tx-sender new-list)
     (ok true)
   )
