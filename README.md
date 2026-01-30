@@ -2,15 +2,15 @@
 
 **Your secrets outlive your silence.**
 
-DeadSwitch is a Bitcoin heartbeat-based dead man's switch protocol built on Stacks. You must "ping" the blockchain every X Bitcoin blocks to prove you're alive/active. If you miss your check-in window, pre-programmed actions trigger: assets transfer, encrypted messages decrypt, or secrets broadcast.
+DeadSwitch is a Bitcoin heartbeat-based dead man's switch protocol built on Stacks. You must "ping" the blockchain every X Bitcoin blocks to prove you're alive/active. If you miss your check-in window, a pre-programmed trigger distributes your assets and reveals your secret pointer.
 
 ## Features
 
 - **Heartbeat System** - Prove you're alive with blockchain check-ins
-- **Asset Vault** - Lock STX and messages securely
-- **Beneficiary Management** - Define who receives what when you go silent
+- **Asset Vault** - Lock STX and encrypted message pointers (URI/Hash)
+- **Beneficiary Management** - Define distribution percentages for your vault
 - **Guardian Network** - Trusted parties who can extend your timer
-- **Automated Actions** - Trigger broadcasts, transfers, or reveals on timeout
+- **Trigger Execution** - Manual or keeper-based trigger that distributes assets on timeout
 
 ## Getting Started
 
@@ -62,10 +62,10 @@ deadswitch/
 | Contract | Description |
 |----------|-------------|
 | `heartbeat-core` | Check-in tracking against Bitcoin blocks |
-| `vault` | Locked assets and encrypted messages |
-| `beneficiary-mgr` | Asset distribution rules on trigger |
+| `vault` | Locked STX assets and secret pointers |
+| `beneficiary-mgr` | Asset distribution rules (percentages) |
 | `guardian-network` | Trusted timer extenders |
-| `trigger-actions` | Automated execution on timeout |
+| `trigger-actions` | Execution logic (distributes vault to beneficiaries) |
 | `switch-nft` | NFT proof of switch configuration |
 
 ## Environment Variables
@@ -100,12 +100,9 @@ Deploy to testnet:
 clarinet deploy --testnet
 ```
 
-## Use Cases
+## Operational Note
 
-- **Whistleblower Protection** - Automatically release evidence if you go silent
-- **Estate Planning** - Transfer assets to family if you pass away
-- **Accountability** - Prove you're alive on a schedule
-- **Dead Man's Switch** - Traditional dead drop functionality
+The switch does not trigger "automatically" at the exact block height. A transaction must be sent to `trigger-actions.execute-trigger` by a beneficiary, a keeper bot, or any interested party after the deadline has passed.
 
 ## Built with Clarity 4
 
