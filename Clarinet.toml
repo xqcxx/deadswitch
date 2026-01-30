@@ -8,38 +8,38 @@ requirements = []
 
 [contracts.nft-trait]
 path = 'contracts/nft-trait.clar'
-clarity_version = 2
-epoch = '2.5'
+clarity_version = 4
+epoch = 'latest'
 
 [contracts.heartbeat-core]
 path = 'contracts/heartbeat-core.clar'
-clarity_version = 2
-epoch = '2.5'
+clarity_version = 4
+epoch = 'latest'
 
 [contracts.vault]
 path = 'contracts/vault.clar'
-clarity_version = 2
-epoch = '2.5'
+clarity_version = 4
+epoch = 'latest'
 
 [contracts.beneficiary-mgr]
 path = 'contracts/beneficiary-mgr.clar'
-clarity_version = 2
-epoch = '2.5'
+clarity_version = 4
+epoch = 'latest'
 
 [contracts.guardian-network]
 path = 'contracts/guardian-network.clar'
-clarity_version = 2
-epoch = '2.5'
+clarity_version = 4
+epoch = 'latest'
 
 [contracts.trigger-actions]
 path = 'contracts/trigger-actions.clar'
-clarity_version = 2
-epoch = '2.5'
+clarity_version = 4
+epoch = 'latest'
 
 [contracts.switch-nft]
 path = 'contracts/switch-nft.clar'
-clarity_version = 2
-epoch = '2.5'
+clarity_version = 4
+epoch = 'latest'
 
 [repl.analysis]
 passes = [
