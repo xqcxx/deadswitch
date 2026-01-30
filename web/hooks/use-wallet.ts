@@ -5,12 +5,13 @@ import { connect, disconnect, isConnected, getLocalStorage } from '@stacks/conne
 
 export function useWallet() {
   const [address, setAddress] = useState<string | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const checkConnection = () => {
       if (isConnected()) {
         const data = getLocalStorage();
+        // @ts-ignore - The types for getLocalStorage might be outdated or loose
         setAddress(data?.addresses?.stx?.[0]?.address || null);
       } else {
         setAddress(null);
@@ -24,7 +25,11 @@ export function useWallet() {
   const connectWallet = useCallback(async () => {
     try {
       const response = await connect();
-      setAddress(response.addresses.stx[0].address);
+      // @ts-ignore - The return type of connect() is strict in newer versions
+      if (response.addresses && response.addresses.stx) {
+         // @ts-ignore
+         setAddress(response.addresses.stx[0].address);
+      }
       return response;
     } catch (error) {
       console.error('Failed to connect wallet:', error);

@@ -1,7 +1,7 @@
 'use client';
 
-import { useWallet } from './hooks/use-wallet';
-import { Dashboard } from './components/dashboard';
+import { useWallet } from '../hooks/use-wallet';
+import { Dashboard } from '../components/dashboard';
 
 export default function Home() {
   const { isConnected, connectWallet } = useWallet();

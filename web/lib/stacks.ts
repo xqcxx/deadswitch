@@ -1,8 +1,8 @@
-import { StacksTestnet, StacksMainnet } from '@stacks/network';
+import { STACKS_MAINNET, STACKS_TESTNET } from '@stacks/network';
 
 export const network = process.env.NEXT_PUBLIC_STACKS_NETWORK === 'mainnet'
-  ? new StacksMainnet()
-  : new StacksTestnet();
+  ? STACKS_MAINNET
+  : STACKS_TESTNET;
 
 export const explorerUrl = (txId: string) =>
   `https://explorer.hiro.so/txid/${txId}?chain=${process.env.NEXT_PUBLIC_STACKS_NETWORK || 'testnet'}`;

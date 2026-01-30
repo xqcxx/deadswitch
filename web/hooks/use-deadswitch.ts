@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { callReadOnlyFunction, cvToValue, standardPrincipalCV } from '@stacks/transactions';
+import { fetchCallReadOnlyFunction, cvToValue, standardPrincipalCV } from '@stacks/transactions';
 import { CONTRACTS, DEPLOYER, network } from '../lib/stacks';
 
 export function useSwitchStatus(address: string | null) {
@@ -10,7 +10,7 @@ export function useSwitchStatus(address: string | null) {
     if (!address) return;
     setLoading(true);
     try {
-      const result = await callReadOnlyFunction({
+      const result = await fetchCallReadOnlyFunction({
         contractAddress: DEPLOYER,
         contractName: CONTRACTS.HEARTBEAT,
         functionName: 'get-status',
@@ -40,7 +40,7 @@ export function useVaultBalance(address: string | null) {
   const fetchBalance = useCallback(async () => {
     if (!address) return;
     try {
-      const result = await callReadOnlyFunction({
+      const result = await fetchCallReadOnlyFunction({
         contractAddress: DEPLOYER,
         contractName: CONTRACTS.VAULT,
         functionName: 'get-balance',
