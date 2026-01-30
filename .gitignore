@@ -10,3 +10,19 @@ coverage
 *.info
 costs-reports.json
 node_modules
+
+# Vercel
+.vercel
+**/.vercel
+
+# Next.js
+**/.next
+.next
+
+# Clarinet
+.clarity
+.clarinet
+
+# Misc
+.DS_Store
+*.db
