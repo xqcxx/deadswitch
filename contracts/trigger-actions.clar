@@ -41,10 +41,15 @@
               (unwrap-panic (contract-call? .vault distribute-stx user first-beneficiary remainder))
               true
             )
+            
+            (print { event: "trigger-executed", user: user, total-distributed: total-distributed, remainder: remainder })
             (ok true)
           )
         )
-        (ok true) ;; No funds or no beneficiaries, but trigger state is ensured
+        (begin
+          (print { event: "trigger-executed-no-funds", user: user })
+          (ok true)
+        )
       )
     )
   )
