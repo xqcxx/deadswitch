@@ -3,6 +3,9 @@
 ;; Clarity 4 Smart Contract
 ;; ============================================
 
+(define-constant ERR_DISTRIBUTION_FAILED (err u500))
+(define-constant ERR_NO_BENEFICIARIES (err u404))
+
 (define-data-var processing-user principal tx-sender)
 (define-data-var processing-balance uint u0)
 
@@ -34,12 +37,17 @@
             (
               (total-distributed (fold distribute-accum beneficiaries u0))
               (remainder (- balance total-distributed))
-              (first-beneficiary (get recipient (unwrap-panic (element-at? beneficiaries u0))))
+              (first-beneficiary-opt (element-at? beneficiaries u0))
             )
             ;; 5. Sweep remainder to first beneficiary
-            (if (> remainder u0)
-              (unwrap-panic (contract-call? .vault distribute-stx user first-beneficiary remainder))
-              true
+            (match first-beneficiary-opt
+              first-ben
+                (if (> remainder u0)
+                  (try! (contract-call? .vault distribute-stx user (get recipient first-ben) remainder))
+                  true
+                )
+              ;; No beneficiaries (shouldn't happen due to check above)
+              (asserts! false ERR_NO_BENEFICIARIES)
             )
             
             (print { event: "trigger-executed", user: user, total-distributed: total-distributed, remainder: remainder })
@@ -61,9 +69,9 @@
       (amount (/ (* (var-get processing-balance) (get percentage item)) u100))
     )
     (if (> amount u0)
-      (begin
-        (unwrap-panic (contract-call? .vault distribute-stx (var-get processing-user) (get recipient item) amount))
-        (+ total-so-far amount)
+      (match (contract-call? .vault distribute-stx (var-get processing-user) (get recipient item) amount)
+        success (+ total-so-far amount)
+        error total-so-far ;; Continue even if one distribution fails
       )
       total-so-far
     )
