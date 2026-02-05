@@ -8,6 +8,7 @@ import { uintCV } from '@stacks/transactions';
 import { DEPLOYER, CONTRACTS, network } from '../lib/stacks';
 import { parseContractError } from '../lib/errors';
 import { showToast } from './toast';
+import { validateInterval, validateGracePeriod } from '../lib/validation';
 
 export function Dashboard() {
   const { address } = useWallet();
@@ -16,12 +17,28 @@ export function Dashboard() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleRegister = () => {
+    const interval = 144;
+    const gracePeriod = 144;
+    
+    // Validate inputs
+    const intervalValidation = validateInterval(interval);
+    if (!intervalValidation.valid) {
+      showToast(intervalValidation.error!, 'error');
+      return;
+    }
+    
+    const graceValidation = validateGracePeriod(gracePeriod);
+    if (!graceValidation.valid) {
+      showToast(graceValidation.error!, 'error');
+      return;
+    }
+    
     setIsLoading(true);
     openContractCall({
       contractAddress: DEPLOYER,
       contractName: CONTRACTS.HEARTBEAT,
       functionName: 'register-switch',
-      functionArgs: [uintCV(144), uintCV(144)], // 1 day interval, 1 day grace default
+      functionArgs: [uintCV(interval), uintCV(gracePeriod)],
       network,
       onFinish: (data) => {
         setIsLoading(false);
