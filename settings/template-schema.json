@@ -1,0 +1,176 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeadSwitch Template Configuration",
+  "type": "object",
+  "required": ["version", "templates", "categories"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of the template configuration"
+    },
+    "templates": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/template"
+      }
+    },
+    "categories": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/category"
+      }
+    }
+  },
+  "definitions": {
+    "template": {
+      "type": "object",
+      "required": ["id", "name", "description", "category", "configuration"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "Unique identifier for the template"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 50,
+          "description": "Display name for the template"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 200,
+          "description": "Detailed description of the template"
+        },
+        "category": {
+          "type": "string",
+          "description": "Category identifier from categories object"
+        },
+        "configuration": {
+          "$ref": "#/definitions/configuration"
+        },
+        "beneficiaryDefaults": {
+          "$ref": "#/definitions/beneficiaryDefaults"
+        },
+        "guardianDefaults": {
+          "$ref": "#/definitions/guardianDefaults"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          }
+        }
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "required": ["heartbeatInterval", "guardianExtensionBlocks", "minGuardians", "maxBeneficiaries"],
+      "properties": {
+        "heartbeatInterval": {
+          "type": "integer",
+          "minimum": 144,
+          "maximum": 52560,
+          "description": "Number of blocks between required heartbeats"
+        },
+        "guardianExtensionBlocks": {
+          "type": "integer",
+          "minimum": 144,
+          "maximum": 10080,
+          "description": "Number of blocks a guardian can extend the timer"
+        },
+        "minGuardians": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Minimum number of guardians required"
+        },
+        "maxBeneficiaries": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Maximum number of beneficiaries allowed"
+        },
+        "allowPartialWithdrawal": {
+          "type": "boolean",
+          "default": false
+        },
+        "autoTriggerEnabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "requireMultiSig": {
+          "type": "boolean",
+          "default": false
+        },
+        "supportMultipleTokens": {
+          "type": "boolean",
+          "default": false
+        },
+        "immediateTrigger": {
+          "type": "boolean",
+          "default": false
+        },
+        "longTermLock": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "beneficiaryDefaults": {
+      "type": "object",
+      "properties": {
+        "distributionType": {
+          "type": "string",
+          "enum": ["equal", "custom", "weighted"]
+        },
+        "defaultPercentage": {
+          "type": ["integer", "null"],
+          "minimum": 1,
+          "maximum": 100
+        }
+      }
+    },
+    "guardianDefaults": {
+      "type": "object",
+      "properties": {
+        "maxGuardians": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "extensionLimit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "allowFamilyGuardians": {
+          "type": "boolean",
+          "default": false
+        },
+        "requireBusinessVerification": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "category": {
+      "type": "object",
+      "required": ["name", "description"],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

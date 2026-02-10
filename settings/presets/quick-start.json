@@ -1,0 +1,55 @@
+{
+  "name": "Quick Start Presets",
+  "description": "Pre-configured settings for common quick-start scenarios",
+  "presets": [
+    {
+      "id": "quick-start-single",
+      "name": "Single Beneficiary Quick Start",
+      "templateId": "personal-basic",
+      "preConfigured": true,
+      "values": {
+        "heartbeatInterval": 1440,
+        "guardianExtensionBlocks": 720,
+        "minGuardians": 0,
+        "beneficiaryCount": 1
+      },
+      "estimatedSetupTime": "2 minutes",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "quick-start-family",
+      "name": "Family Quick Start",
+      "templateId": "family-protection",
+      "preConfigured": true,
+      "values": {
+        "heartbeatInterval": 10080,
+        "guardianExtensionBlocks": 4320,
+        "minGuardians": 1,
+        "beneficiaryCount": 3,
+        "distributionType": "equal"
+      },
+      "estimatedSetupTime": "5 minutes",
+      "difficulty": "beginner"
+    },
+    {
+      "id": "quick-start-emergency",
+      "name": "Emergency Fund Quick Start",
+      "templateId": "emergency-fund",
+      "preConfigured": true,
+      "values": {
+        "heartbeatInterval": 720,
+        "guardianExtensionBlocks": 360,
+        "minGuardians": 0,
+        "beneficiaryCount": 2,
+        "distributionType": "equal"
+      },
+      "estimatedSetupTime": "3 minutes",
+      "difficulty": "beginner"
+    }
+  ],
+  "metadata": {
+    "targetAudience": "new-users",
+    "setupAssistance": "guided",
+    "wizardEnabled": true
+  }
+}

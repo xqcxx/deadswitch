@@ -1,0 +1,69 @@
+{
+  "name": "Advanced Configuration Presets",
+  "description": "Advanced presets for power users and specific use cases",
+  "presets": [
+    {
+      "id": "advanced-multi-sig",
+      "name": "Multi-Signature Guardian Setup",
+      "templateId": "business-continuity",
+      "preConfigured": false,
+      "requiresSetup": [
+        "guardianSelection",
+        "multiSigThreshold",
+        "beneficiaryConfiguration"
+      ],
+      "recommendedValues": {
+        "minGuardians": 3,
+        "heartbeatInterval": 2880,
+        "requireMultiSig": true,
+        "autoTriggerEnabled": false
+      },
+      "securityLevel": "high",
+      "useCase": "business"
+    },
+    {
+      "id": "advanced-cold-storage",
+      "name": "Cold Storage Configuration",
+      "templateId": "long-term-storage",
+      "preConfigured": false,
+      "requiresSetup": [
+        "beneficiaryConfiguration",
+        "guardianSelection",
+        "vaultAmount"
+      ],
+      "recommendedValues": {
+        "heartbeatInterval": 43200,
+        "minGuardians": 2,
+        "allowPartialWithdrawal": false,
+        "longTermLock": true
+      },
+      "securityLevel": "maximum",
+      "useCase": "storage"
+    },
+    {
+      "id": "advanced-trading",
+      "name": "Active Trading Setup",
+      "templateId": "crypto-investor",
+      "preConfigured": false,
+      "requiresSetup": [
+        "beneficiaryConfiguration",
+        "partialWithdrawalSettings",
+        "tokenSupport"
+      ],
+      "recommendedValues": {
+        "heartbeatInterval": 2160,
+        "allowPartialWithdrawal": true,
+        "supportMultipleTokens": true,
+        "autoTriggerEnabled": true
+      },
+      "securityLevel": "medium",
+      "useCase": "investment"
+    }
+  ],
+  "metadata": {
+    "targetAudience": "advanced-users",
+    "setupAssistance": "guided-advanced",
+    "wizardEnabled": true,
+    "expertModeAvailable": true
+  }
+}
