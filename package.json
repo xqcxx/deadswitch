@@ -7,7 +7,13 @@
   "scripts": {
     "test": "vitest run",
     "test:report": "vitest run -- --coverage --costs",
-    "test:watch": "chokidar \"tests/**/*.ts\" \"contracts/**/*.clar\" -c \"npm run test:report\""
+    "test:watch": "chokidar \"tests/**/*.ts\" \"contracts/**/*.clar\" -c \"npm run test:report\"",
+    "test:coverage": "vitest run --coverage",
+    "lint": "echo 'Run linting in frontend directory' && cd frontend && npm run lint",
+    "format": "echo 'Run formatting in frontend directory' && cd frontend && npm run format",
+    "build": "echo 'Build frontend' && cd frontend && npm run build",
+    "ci": "npm run test && npm run lint && npm run build",
+    "dev": "cd frontend && npm run dev"
   },
   "author": "",
   "license": "ISC",

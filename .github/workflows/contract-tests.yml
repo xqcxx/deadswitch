@@ -1,0 +1,33 @@
+name: Contract Tests
+
+on:
+  push:
+    branches: [ master, main, develop ]
+    paths:
+      - 'contracts/**'
+      - 'tests/**'
+      - 'Clarinet.toml'
+  pull_request:
+    branches: [ master, main ]
+    paths:
+      - 'contracts/**'
+      - 'tests/**'
+      - 'Clarinet.toml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Clarinet
+      run: |
+        curl -L https://github.com/hirosystems/clarinet/releases/download/v2.4.0/clarinet-linux-x64-glibc.tar.gz | tar xz
+        sudo mv clarinet /usr/local/bin/
+    
+    - name: Run contract tests
+      run: clarinet test
+      
+    - name: Check contract syntax
+      run: clarinet check
