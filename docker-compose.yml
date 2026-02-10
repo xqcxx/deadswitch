@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # Stacks devnet for local development
+  stacks-devnet:
+    image: hirosystems/stacks-blockchain-api:latest
+    ports:
+      - "20443:20443"  # stacks-node rpc
+      - "20444:20444"  # stacks-node p2p
+      - "3999:3999"    # API
+    environment:
+      - STACKS_CORE_RPC_HOST=stacks-blockchain
+      - STACKS_CORE_RPC_PORT=20443
+      - STACKS_BLOCKCHAIN_API_PORT=3999
+      - STACKS_BLOCKCHAIN_API_HOST=0.0.0.0
+      - PG_HOST=postgres
+      - PG_PORT=5432
+      - PG_USER=postgres
+      - PG_PASSWORD=postgres
+      - PG_DATABASE=stacks_blockchain_api
+    depends_on:
+      - postgres
+      - stacks-blockchain
+    networks:
+      - stacks-network
+
+  # Stacks blockchain node
+  stacks-blockchain:
+    image: hirosystems/stacks-blockchain:latest
+    command: ["stacks-node", "start", "--config=/src/stacks-node/Config.toml"]
+    ports:
+      - "20443:20443"
+      - "20444:20444"
+    volumes:
+      - ./devnet/Config.toml:/src/stacks-node/Config.toml
+    depends_on:
+      - postgres
+    networks:
+      - stacks-network
+
+  # PostgreSQL database
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: stacks_blockchain_api
+      POSTGRES_PORT: 5432
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - stacks-network
+
+  # Local Clarinet console for contract development
+  clarinet-console:
+    image: hirosystems/clarinet:latest
+    volumes:
+      - .:/workspace
+    working_dir: /workspace
+    command: ["clarinet", "console"]
+    stdin_open: true
+    tty: true
+    networks:
+      - stacks-network
+
+  # Mocknet for faster local testing
+  mocknet:
+    image: hirosystems/stacks-blockchain:latest
+    command: 
+      - stacks-node
+      - start
+      - --config=/src/stacks-node/mocknet.toml
+    ports:
+      - "20443:20443"
+    volumes:
+      - ./devnet/mocknet.toml:/src/stacks-node/mocknet.toml
+    profiles:
+      - mocknet
+    networks:
+      - stacks-network
+
+volumes:
+  postgres-data:
+
+networks:
+  stacks-network:
+    driver: bridge
