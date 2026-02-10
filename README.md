@@ -83,22 +83,47 @@ SWITCH_NFT_CONTRACT=...
 
 ## Deployment
 
-### Frontend
+### Quick Deploy
 
-Deploy to Vercel:
-
+Deploy contracts to testnet:
 ```bash
-cd web
-vercel deploy
+make deploy-contracts-testnet
 ```
 
-### Contracts
-
-Deploy to testnet:
-
+Deploy frontend preview:
 ```bash
-clarinet deploy --testnet
+make deploy-frontend-preview
 ```
+
+Deploy everything:
+```bash
+make deploy-all
+```
+
+### Detailed Deployment Guide
+
+For comprehensive deployment instructions including:
+- Contract deployment to testnet and mainnet
+- Frontend deployment to Vercel
+- Environment configuration
+- Automated deployment setup
+- Troubleshooting
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)
+
+### Local Development
+
+Start local devnet:
+```bash
+make devnet-up
+```
+
+Run development server:
+```bash
+make dev
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed development setup.
 
 ## Operational Note
 
