@@ -26,6 +26,16 @@ path = 'contracts/beneficiary-mgr.clar'
 clarity_version = 4
 epoch = 'latest'
 
+[contracts.beneficiary-mgr-v2]
+path = 'contracts/beneficiary-mgr-v2.clar'
+clarity_version = 4
+epoch = 'latest'
+
+[contracts.beneficiary-migration]
+path = 'contracts/beneficiary-migration.clar'
+clarity_version = 4
+epoch = 'latest'
+
 [contracts.guardian-network]
 path = 'contracts/guardian-network.clar'
 clarity_version = 4
