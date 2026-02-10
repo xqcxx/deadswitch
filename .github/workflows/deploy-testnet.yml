@@ -1,0 +1,36 @@
+name: Deploy to Testnet
+
+on:
+  push:
+    branches: [ develop ]
+    paths:
+      - 'contracts/**'
+      - 'Clarinet.toml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: testnet
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Clarinet
+      run: |
+        curl -L https://github.com/hirosystems/clarinet/releases/download/v2.4.0/clarinet-linux-x64-glibc.tar.gz | tar xz
+        sudo mv clarinet /usr/local/bin/
+    
+    - name: Run contract tests
+      run: clarinet test
+      
+    - name: Deploy to testnet
+      run: |
+        echo "${{ secrets.STACKS_MNEMONIC }}" > mnemonic.txt
+        clarinet deploy --testnet --mnemonic-file mnemonic.txt
+      env:
+        STACKS_MNEMONIC: ${{ secrets.STACKS_MNEMONIC }}
+      continue-on-error: true
+    
+    - name: Cleanup
+      run: rm -f mnemonic.txt
