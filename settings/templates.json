@@ -1,0 +1,204 @@
+{
+  "version": "1.0.0",
+  "templates": [
+    {
+      "id": "personal-basic",
+      "name": "Personal - Basic",
+      "description": "Simple configuration for personal asset protection with single beneficiary",
+      "category": "personal",
+      "configuration": {
+        "heartbeatInterval": 1440,
+        "guardianExtensionBlocks": 720,
+        "minGuardians": 1,
+        "maxBeneficiaries": 3,
+        "allowPartialWithdrawal": false,
+        "autoTriggerEnabled": true
+      },
+      "beneficiaryDefaults": {
+        "distributionType": "equal",
+        "defaultPercentage": 100
+      },
+      "guardianDefaults": {
+        "maxGuardians": 3,
+        "extensionLimit": 5
+      },
+      "tags": ["beginner", "simple", "single-beneficiary"]
+    },
+    {
+      "id": "personal-advanced",
+      "name": "Personal - Advanced",
+      "description": "Advanced configuration with multiple beneficiaries and guardian network",
+      "category": "personal",
+      "configuration": {
+        "heartbeatInterval": 4320,
+        "guardianExtensionBlocks": 1440,
+        "minGuardians": 2,
+        "maxBeneficiaries": 5,
+        "allowPartialWithdrawal": true,
+        "autoTriggerEnabled": true
+      },
+      "beneficiaryDefaults": {
+        "distributionType": "custom",
+        "defaultPercentage": null
+      },
+      "guardianDefaults": {
+        "maxGuardians": 5,
+        "extensionLimit": 10
+      },
+      "tags": ["advanced", "multi-beneficiary", "guardian-network"]
+    },
+    {
+      "id": "family-protection",
+      "name": "Family Protection",
+      "description": "Designed for family asset distribution with equal shares",
+      "category": "family",
+      "configuration": {
+        "heartbeatInterval": 10080,
+        "guardianExtensionBlocks": 4320,
+        "minGuardians": 1,
+        "maxBeneficiaries": 10,
+        "allowPartialWithdrawal": true,
+        "autoTriggerEnabled": true
+      },
+      "beneficiaryDefaults": {
+        "distributionType": "equal",
+        "defaultPercentage": null
+      },
+      "guardianDefaults": {
+        "maxGuardians": 3,
+        "extensionLimit": 20,
+        "allowFamilyGuardians": true
+      },
+      "tags": ["family", "equal-distribution", "long-interval"]
+    },
+    {
+      "id": "business-continuity",
+      "name": "Business Continuity",
+      "description": "Business-focused configuration with multi-sig guardian requirements",
+      "category": "business",
+      "configuration": {
+        "heartbeatInterval": 2880,
+        "guardianExtensionBlocks": 1440,
+        "minGuardians": 3,
+        "maxBeneficiaries": 8,
+        "allowPartialWithdrawal": false,
+        "autoTriggerEnabled": false,
+        "requireMultiSig": true
+      },
+      "beneficiaryDefaults": {
+        "distributionType": "custom",
+        "defaultPercentage": null
+      },
+      "guardianDefaults": {
+        "maxGuardians": 7,
+        "extensionLimit": 50,
+        "requireBusinessVerification": true
+      },
+      "tags": ["business", "multi-sig", "manual-trigger"]
+    },
+    {
+      "id": "crypto-investor",
+      "name": "Crypto Investor",
+      "description": "Optimized for crypto investors with shorter intervals and partial withdrawals",
+      "category": "investment",
+      "configuration": {
+        "heartbeatInterval": 2160,
+        "guardianExtensionBlocks": 720,
+        "minGuardians": 1,
+        "maxBeneficiaries": 4,
+        "allowPartialWithdrawal": true,
+        "autoTriggerEnabled": true,
+        "supportMultipleTokens": true
+      },
+      "beneficiaryDefaults": {
+        "distributionType": "custom",
+        "defaultPercentage": null
+      },
+      "guardianDefaults": {
+        "maxGuardians": 3,
+        "extensionLimit": 15
+      },
+      "tags": ["crypto", "investor", "partial-withdrawal"]
+    },
+    {
+      "id": "emergency-fund",
+      "name": "Emergency Fund",
+      "description": "Quick-access emergency fund with short heartbeat and immediate trigger",
+      "category": "emergency",
+      "configuration": {
+        "heartbeatInterval": 720,
+        "guardianExtensionBlocks": 360,
+        "minGuardians": 0,
+        "maxBeneficiaries": 2,
+        "allowPartialWithdrawal": true,
+        "autoTriggerEnabled": true,
+        "immediateTrigger": true
+      },
+      "beneficiaryDefaults": {
+        "distributionType": "equal",
+        "defaultPercentage": 50
+      },
+      "guardianDefaults": {
+        "maxGuardians": 2,
+        "extensionLimit": 3
+      },
+      "tags": ["emergency", "quick-access", "short-interval"]
+    },
+    {
+      "id": "long-term-storage",
+      "name": "Long-term Storage",
+      "description": "Conservative long-term storage with extended intervals",
+      "category": "storage",
+      "configuration": {
+        "heartbeatInterval": 43200,
+        "guardianExtensionBlocks": 10080,
+        "minGuardians": 1,
+        "maxBeneficiaries": 5,
+        "allowPartialWithdrawal": false,
+        "autoTriggerEnabled": true,
+        "longTermLock": true
+      },
+      "beneficiaryDefaults": {
+        "distributionType": "equal",
+        "defaultPercentage": null
+      },
+      "guardianDefaults": {
+        "maxGuardians": 5,
+        "extensionLimit": 100
+      },
+      "tags": ["long-term", "conservative", "hodl"]
+    }
+  ],
+  "categories": {
+    "personal": {
+      "name": "Personal",
+      "description": "Individual asset protection configurations",
+      "icon": "user"
+    },
+    "family": {
+      "name": "Family",
+      "description": "Family-oriented asset distribution",
+      "icon": "users"
+    },
+    "business": {
+      "name": "Business",
+      "description": "Business continuity and succession planning",
+      "icon": "briefcase"
+    },
+    "investment": {
+      "name": "Investment",
+      "description": "Investment and trading focused configurations",
+      "icon": "trending-up"
+    },
+    "emergency": {
+      "name": "Emergency",
+      "description": "Quick-access emergency fund setups",
+      "icon": "alert-circle"
+    },
+    "storage": {
+      "name": "Storage",
+      "description": "Long-term cold storage solutions",
+      "icon": "archive"
+    }
+  }
+}
