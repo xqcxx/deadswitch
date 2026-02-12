@@ -4,3 +4,4 @@
 // Architecture documentation step 4
 // Architecture documentation step 5
 // Architecture documentation step 6
+// Architecture documentation step 7
