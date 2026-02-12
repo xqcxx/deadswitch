@@ -14,3 +14,4 @@
 // Switch history dashboard step 14
 // Switch history dashboard step 15
 // Switch history dashboard step 16
+// Switch history dashboard step 17
