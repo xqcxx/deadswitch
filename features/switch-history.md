@@ -7,3 +7,4 @@
 // Switch history dashboard step 7
 // Switch history dashboard step 8
 // Switch history dashboard step 9
+// Switch history dashboard step 10
