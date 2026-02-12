@@ -6,3 +6,4 @@
 // Time-lock encryption step 6
 // Time-lock encryption step 7
 // Time-lock encryption step 8
+// Time-lock encryption step 9
