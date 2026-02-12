@@ -12,3 +12,4 @@
 // Switch history dashboard step 12
 // Switch history dashboard step 13
 // Switch history dashboard step 14
+// Switch history dashboard step 15
