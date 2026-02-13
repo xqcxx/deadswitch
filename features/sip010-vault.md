@@ -15,3 +15,4 @@
 // SIP-010 vault step 15
 // SIP-010 vault step 16
 // SIP-010 vault step 17
+// SIP-010 vault step 18
