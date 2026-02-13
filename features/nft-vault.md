@@ -5,3 +5,4 @@
 // NFT vault SIP-009 step 5
 // NFT vault SIP-009 step 6
 // NFT vault SIP-009 step 7
+// NFT vault SIP-009 step 8
