@@ -17,3 +17,4 @@
 // SIP-010 vault step 17
 // SIP-010 vault step 18
 // SIP-010 vault step 19
+// SIP-010 vault step 20
