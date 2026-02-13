@@ -14,3 +14,4 @@
 // NFT vault SIP-009 step 14
 // NFT vault SIP-009 step 15
 // NFT vault SIP-009 step 16
+// NFT vault SIP-009 step 17
