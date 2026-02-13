@@ -8,3 +8,4 @@
 // SIP-010 vault step 8
 // SIP-010 vault step 9
 // SIP-010 vault step 10
+// SIP-010 vault step 11
